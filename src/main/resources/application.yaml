@@ -1,3 +1,15 @@
 spring:
-  application:
-    name: cadastroAlunos
+  datasource:
+    url: jdbc:mysql://localhost:3306/escola?useSSL=false&serverTimezone=UTC
+    username: root
+    password: 1234567
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.dialect.MySQL8Dialect
