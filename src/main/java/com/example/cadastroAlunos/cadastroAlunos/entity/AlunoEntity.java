@@ -11,7 +11,7 @@ public class AlunoEntity {
 
     private String nome;
     private String email;
-    private int idade;
+    private Integer idade;
 
     public AlunoEntity() {
     }
