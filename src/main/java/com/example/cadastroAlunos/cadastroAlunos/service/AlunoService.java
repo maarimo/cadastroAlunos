@@ -45,4 +45,19 @@ public class AlunoService {
                 .map(this::toDTO)
                 .collect(Collectors.toList());
     }
+
+    //BUSCARiD
+    public AlunoDTO buscarPorId(Long id){
+        AlunoEntity aluno = alunoRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Aluno não encontrado"));
+        return toDTO(aluno);
+    }
+
+    //DELETE
+    public void deletar(Long id){
+        AlunoEntity aluno = alunoRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Aluno não encontrado"));
+
+        alunoRepository.delete(aluno);
+    }
 }
