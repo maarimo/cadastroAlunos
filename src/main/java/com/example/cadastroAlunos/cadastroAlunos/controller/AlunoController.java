@@ -4,7 +4,7 @@ import com.example.cadastroAlunos.cadastroAlunos.dto.AlunoCreateDTO;
 import com.example.cadastroAlunos.cadastroAlunos.dto.AlunoDTO;
 import com.example.cadastroAlunos.cadastroAlunos.dto.AlunoUpdateDTO;
 import com.example.cadastroAlunos.cadastroAlunos.service.AlunoService;
-import org.springframework.stereotype.Controller;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -26,25 +26,25 @@ public class AlunoController {
     }
 
     //BUSCARporID
-    @GetMapping({"/id"})
+    @GetMapping("/{id}")
     public AlunoDTO buscarPorId(@PathVariable Long id){
         return alunoService.buscarPorId(id);
     }
 
     //CRIAR
-    @PostMapping({"/id"})
-    public AlunoDTO criar(@RequestBody AlunoCreateDTO dto){
+    @PostMapping()
+    public AlunoDTO criar(@Valid @RequestBody AlunoCreateDTO dto){
         return alunoService.criar(dto);
     }
 
     //DELETE
-    @DeleteMapping({"/id"})
+    @DeleteMapping("/{id}")
     public void deletar(@PathVariable Long id){
         alunoService.deletar(id);
     }
 
     //ATUALIZAR
-    @PutMapping({"/id"})
+    @PutMapping("/{id}")
     public AlunoDTO atualizar(@PathVariable Long id,
                               @RequestBody AlunoUpdateDTO dto){
         return alunoService.atualizar(id, dto);
