@@ -2,6 +2,7 @@ package com.example.cadastroAlunos.cadastroAlunos.service;
 
 import com.example.cadastroAlunos.cadastroAlunos.dto.AlunoCreateDTO;
 import com.example.cadastroAlunos.cadastroAlunos.dto.AlunoDTO;
+import com.example.cadastroAlunos.cadastroAlunos.dto.AlunoUpdateDTO;
 import com.example.cadastroAlunos.cadastroAlunos.entity.AlunoEntity;
 import com.example.cadastroAlunos.cadastroAlunos.repository.AlunoRepository;
 import org.springframework.stereotype.Service;
@@ -59,5 +60,18 @@ public class AlunoService {
                 .orElseThrow(()-> new RuntimeException("Aluno não encontrado"));
 
         alunoRepository.delete(aluno);
+    }
+
+    //UPDATE
+    public AlunoDTO atualizar(Long id, AlunoUpdateDTO dto){
+        AlunoEntity aluno = alunoRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Aluno não encontrado"));
+
+        aluno.setNome(dto.getNome());
+        aluno.setEmail(dto.getEmail());
+        aluno.setIdade(dto.getIdade());
+
+        AlunoEntity atualizado = alunoRepository.save(aluno);
+        return toDTO(atualizado);
     }
 }
